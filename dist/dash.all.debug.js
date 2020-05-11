@@ -22928,11 +22928,13 @@ function ListSegmentsGetter(config, isDynamic) {
             var s = list.SegmentURL_asArray[index];
 
             segment = (0, _SegmentsUtils.getIndexBasedSegment)(timelineConverter, isDynamic, representation, index);
-            segment.replacementTime = (start + index - 1) * representation.segmentDuration;
-            segment.media = s.media ? s.media : '';
-            segment.mediaRange = s.mediaRange;
-            segment.index = index;
-            segment.indexRange = s.indexRange;
+            if (segment) {
+                segment.replacementTime = (start + index - 1) * representation.segmentDuration;
+                segment.media = s.media ? s.media : '';
+                segment.mediaRange = s.mediaRange;
+                segment.index = index;
+                segment.indexRange = s.indexRange;
+            }
         }
 
         representation.availableSegmentsNumber = len;
